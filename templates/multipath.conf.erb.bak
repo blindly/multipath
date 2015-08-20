@@ -1,0 +1,26 @@
+defaults {
+        polling_interval        30
+        failback                immediate
+        no_path_retry           5
+        rr_min_io               100
+        path_checker            tur
+        user_friendly_names     yes
+}
+
+devices {
+        device {
+                vendor                  "IBM"
+                product                 "2145"
+                path_grouping_policy    group_by_prio
+                prio_callout            "/sbin/mpath_prio_alua /dev/%n"
+        }
+}
+
+multipaths {
+    <% devices.each do |key,value| -%>
+    multipath {
+        wwid    <%= value  %>
+        alias   <%= key %>
+    }
+    <% end -%>
+}

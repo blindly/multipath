@@ -1,0 +1,8 @@
+multipaths {
+    <% devices.each do |key,value| -%>
+    multipath {
+        wwid    <%= value  %>
+        alias   <%= key %>
+    }
+    <% end -%>
+}
