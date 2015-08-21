@@ -1,5 +1,11 @@
+defaults {
+  find_multipaths yes
+  user_friendly_names no
+}
+
+
 multipaths {
-    <% devices.each do |key,value| -%>
+    <% @devices.each do |key,value| -%>
     multipath {
         wwid    <%= value  %>
         alias   <%= key %>
